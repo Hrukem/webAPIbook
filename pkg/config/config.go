@@ -10,7 +10,8 @@ type cfg struct {
 	DbPort string
 }
 
-var Cfg cfg // new struct config
+// Cfg new struct config
+var Cfg cfg
 
 // Config function implements configuration
 func Config() error {
