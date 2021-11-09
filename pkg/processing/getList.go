@@ -61,14 +61,10 @@ func GetList(w http.ResponseWriter, r *http.Request) {
 		bookList = append(bookList, b)
 	}
 
-	fmt.Println("bookList", bookList)
-
 	answer, err := json.Marshal(bookList)
 	if err != nil {
 		fmt.Println("error Marshal in processing.GetList()", err)
 	}
-
-	fmt.Println("answer", string(answer))
 
 	w.WriteHeader(http.StatusOK)
 	_, err = w.Write(answer)
