@@ -30,7 +30,7 @@ RUN cp  -r /app/main .
 FROM scratch
 
 COPY --from=builder /dist/main .
-COPY --from=builder /app/.env .
+#COPY --from=builder /app/.env .
 
 # Command to run
 ENTRYPOINT ["./cmd"]
