@@ -4,7 +4,7 @@ package storage
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/lib/pq"
+	_ "github.com/lib/pq" // for use behavior
 	"golang_ninja/webAPIbook/pkg/config"
 )
 

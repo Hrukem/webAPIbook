@@ -7,6 +7,7 @@ import (
 	"net/http"
 )
 
+// Server function start server
 func Server() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/book", workDb)

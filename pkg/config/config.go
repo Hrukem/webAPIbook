@@ -10,8 +10,9 @@ type cfg struct {
 	DbPort string
 }
 
-var Cfg cfg
+var Cfg cfg // new struct config
 
+// Config function implements configuration
 func Config() error {
 	Cfg.Port = "0.0.0.0:4004"
 	Cfg.DbUser = "postgres"

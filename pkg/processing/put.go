@@ -48,14 +48,6 @@ func Put(w http.ResponseWriter, r *http.Request) {
 			log.Println("error close db in processing.Put()")
 		}
 	}()
-	if err != nil {
-		log.Println("error database insert PUT", err)
-		w.WriteHeader(http.StatusInternalServerError)
-		if _, err = w.Write([]byte("error database insert")); err != nil {
-			log.Println("error write body answer in processing.Put()", err)
-		}
-		return
-	}
 
 	m := map[string]int{"id": id}
 	answer, err := json.Marshal(m)
