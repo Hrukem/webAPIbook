@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/webAPIbook.iml" filepath="$PROJECT_DIR$/.idea/webAPIbook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../webAPIbooks/.idea/webAPIbooks.iml" filepath="$PROJECT_DIR$/../webAPIbooks/.idea/webAPIbooks.iml" />
     </modules>
   </component>
 </project>

@@ -1,16 +1,16 @@
 version: "3.7"
 services:
+  dbwebapibooks:
+    image: postgres:latest
+    restart: always
+    volumes:
+      - ./pkg/storage/init_s:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
   app:
     build: .
     depends_on:
       - dbwebapibooks
     ports:
       - "4004:4004"
-  dbwebapibooks:
-    image: postgres:latest
-    restart: always
-    volumes:
-      - ./init_sql:/docker-entrypoint-initdb.d
-    environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres

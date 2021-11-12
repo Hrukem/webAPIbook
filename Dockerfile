@@ -18,19 +18,19 @@ RUN go mod download
 COPY . .
 
 # Build the application
-RUN go build -o main ./...
+RUN go build -o bin ./...
 
 # Move to /dist directory as the place for resulting binary folder
 WORKDIR /dist
 
-# Copy binary from build to main folder
-RUN cp  -r /app/main .
+# Copy binary from build to bin folder
+RUN cp  -r /app/bin .
 
 # Build a small image
 FROM scratch
 
-COPY --from=builder /dist/main .
+COPY --from=builder /dist/bin .
 #COPY --from=builder /app/.env .
 
 # Command to run
-ENTRYPOINT ["./cmd"]
+ENTRYPOINT ["./webAPIbook"]
