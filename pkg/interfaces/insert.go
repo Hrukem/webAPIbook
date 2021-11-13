@@ -1,4 +1,4 @@
-package storage
+package interfaces
 
 import (
 	"database/sql"
@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func (db *DB) PostBook(m map[string]string) (int, error) {
+func (db *interfaces.DB) insert(m map[string]string) (int, error) {
 	id := 0
 	str := "INSERT INTO books " +
 		"(author, title, publishing, dateinsert) " +

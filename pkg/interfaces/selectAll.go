@@ -1,14 +1,19 @@
-package storage
+package interfaces
 
-import (
-	"log"
-)
+import "log"
 
-func (db *DB) GetAll() ([]books, error) {
+type books struct {
+	Id         int    `json:"id"`
+	Title      string `json:"title"`
+	Author     string `json:"author"`
+	Publishing string `json:"publishing"`
+}
+
+func (db *DB) selectAll() ([]books, error) {
 	str := "SELECT id, title, author," + " publishing FROM books"
 	rows, err := db.Query(str)
 	if err != nil {
-		log.Println("error get data from db in transport.GetAll()")
+		log.Println("error get data from db in intrface.selectAll()")
 		return nil, err
 	}
 
