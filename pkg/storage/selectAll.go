@@ -1,4 +1,4 @@
-package interfaces
+package storage
 
 import "log"
 
@@ -9,11 +9,11 @@ type books struct {
 	Publishing string `json:"publishing"`
 }
 
-func (db *DB) selectAll() ([]books, error) {
+func (s *S) SelectAll(db *DB) ([]books, error) {
 	str := "SELECT id, title, author," + " publishing FROM books"
 	rows, err := db.Query(str)
 	if err != nil {
-		log.Println("error get data from db in intrface.selectAll()")
+		log.Println("error get data from db in interfaces.selectAll()")
 		return nil, err
 	}
 
@@ -22,7 +22,7 @@ func (db *DB) selectAll() ([]books, error) {
 		b := books{}
 		err = rows.Scan(&b.Id, &b.Title, &b.Author, &b.Publishing)
 		if err != nil {
-			log.Println("error Scan rows in transport.GetAll()")
+			log.Println("error Scan rows in interfaces.selectAll()")
 			return nil, err
 		}
 		bookList = append(bookList, b)

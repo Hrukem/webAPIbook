@@ -1,12 +1,13 @@
-package interfaces
+package business
 
 import (
 	"encoding/json"
 	"fmt"
+	"golang_ninja/webAPIbook/pkg/storage"
 	"net/http"
 )
 
-func () InsertObjectInDb(r *http.Request) (map[string]int, error){
+func (bs *B) InsertObjectInDb(r *http.Request, db *storage.DB) (map[string]int, error) {
 	var b map[string]string
 	err := json.NewDecoder(r.Body).Decode(&b)
 	if err != nil {
@@ -14,7 +15,7 @@ func () InsertObjectInDb(r *http.Request) (map[string]int, error){
 		return nil, err
 	}
 
-	id, err := db.insert(b)
+	id, err := bs.Insert(b, db)
 
 	m := map[string]int{"id": id}
 

@@ -1,32 +1,39 @@
 package transport
 
 import (
-	"golang_ninja/webAPIbook/pkg/config"
+	"golang_ninja/webAPIbook/config"
+	"golang_ninja/webAPIbook/pkg/business"
 	"golang_ninja/webAPIbook/pkg/storage"
 	"log"
 	"net/http"
 )
 
-type Store struct {
-	db storage.Storage
+type T struct {
+	db *storage.DB
+	Trnsprt
+	business.B
 }
 
 // Server function start server
-func Server() {
-
+func Server() error {
 	db, err := storage.NewDb()
 	if err != nil {
-		log.Fatal("error create database", err)
+		log.Println("error create database: ", err)
+		return err
 	}
 
-	env := &Store{db}
+	serv := &T{db, Trnsprt{}, business.B{}}
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("/books", env.bookAll)
-	mux.HandleFunc("/book", env.bookPost)
+	mux.HandleFunc("/books", serv.GetAll)
+	mux.HandleFunc("/book", serv.Post)
 	mux.HandleFunc("/book/", workDb)
 
-	log.Fatal(http.ListenAndServe(config.Cfg.Port, mux))
+	err = http.ListenAndServe(config.Cfg.Port, mux)
+	if err != nil {
+		log.Println("error server", err)
+	}
+	return nil
 }
 
 func workDb(w http.ResponseWriter, r *http.Request) {
@@ -34,8 +41,6 @@ func workDb(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
 		//		old.Get(w, r)
-	case "POST":
-		//		old.Post(w, r)
 	case "PUT":
 		//		old.Put(w, r)
 	case "DELETE":

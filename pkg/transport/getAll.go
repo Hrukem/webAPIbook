@@ -1,4 +1,4 @@
-package interfaces
+package transport
 
 import (
 	"fmt"
@@ -6,13 +6,13 @@ import (
 	"net/http"
 )
 
-func (db *interfaces.DB) GetAll(w http.ResponseWriter, r *http.Request) {
+func (t *T) GetAll(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
 		return
 	}
 
-	answer, err := db.getAllFromDb()
+	answer, err := t.GetAllFromDb(t.db)
 	if err != nil {
 		log.Println("error get data from database", err)
 		w.WriteHeader(http.StatusInternalServerError)

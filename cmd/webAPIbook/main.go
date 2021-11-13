@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"golang_ninja/webAPIbook/pkg/config"
+	"golang_ninja/webAPIbook/config"
 	"golang_ninja/webAPIbook/pkg/transport"
 	"log"
 	"time"
@@ -10,12 +10,16 @@ import (
 
 func main() {
 	fmt.Println("start application")
-	time.Sleep(time.Second * 5)
 
 	err := config.Config()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("error reade config", err)
 	}
 
-	transport.Server()
+	time.Sleep(time.Second * 5)
+
+	err = transport.Server()
+	if err != nil {
+		log.Fatal("error program. stop app")
+	}
 }

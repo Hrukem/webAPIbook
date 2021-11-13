@@ -1,29 +1,24 @@
-package interfaces
+package storage
 
 import (
 	"database/sql"
-	"golang_ninja/webAPIbook/pkg/config"
+	_ "github.com/lib/pq"
+	"golang_ninja/webAPIbook/config"
 	"log"
-	"net/http"
 )
 
-type Transport interface {
-	Post(w http.ResponseWriter, r *http.Request)
-	GetAll(w http.ResponseWriter, r *http.Request)
-}
-
-type Business interface {
-	newObjectInDb(*http.Request) (map[string]int, error)
-	getAllFromDb()
-}
-
 type Storage interface {
-	insert()
-	selectAll()
+	SelectAll(*DB) ([]books, error)
+	Insert(map[string]string, *DB) (int, error)
 }
 
 type DB struct {
 	*sql.DB
+}
+
+type S struct {
+	DB
+	Storage
 }
 
 func NewDb() (*DB, error) {

@@ -1,4 +1,4 @@
-package interfaces
+package transport
 
 import (
 	"encoding/json"
@@ -6,13 +6,13 @@ import (
 	"net/http"
 )
 
-func (t *transport) Post(w http.ResponseWriter, r *http.Request) {
+func (t *T) Post(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
 		return
 	}
 
-	mapRes, err := t.
+	mapRes, err := t.InsertObjectInDb(r, t.db)
 	if err != nil {
 		log.Println("error put data in database", err)
 		w.WriteHeader(http.StatusInternalServerError)
