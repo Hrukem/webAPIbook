@@ -1,7 +1,6 @@
 package transport
 
 import (
-	"encoding/json"
 	"log"
 	"net/http"
 )
@@ -12,21 +11,11 @@ func (t *T) Post(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	mapRes, err := t.InsertObjectInDb(r, t.db)
+	answer, err := t.InsertObjectInDb(r, t.db)
 	if err != nil {
-		log.Println("error put data in database", err)
+		log.Println("error insert data in database", err)
 		w.WriteHeader(http.StatusInternalServerError)
-		if _, err = w.Write([]byte("error create object in database on server")); err != nil {
-			log.Println("error write body answer in transport.bookCreate()", err)
-		}
-		return
-	}
-
-	answer, err := json.Marshal(mapRes)
-	if err != nil {
-		log.Println("error Marshal in transport.Put()")
-		w.WriteHeader(http.StatusInternalServerError)
-		if _, err = w.Write([]byte("error JSON on server")); err != nil {
+		if _, err = w.Write([]byte("error insert object in database on server")); err != nil {
 			log.Println("error write body answer in transport.bookCreate()", err)
 		}
 		return

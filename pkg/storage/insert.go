@@ -2,20 +2,21 @@ package storage
 
 import (
 	"database/sql"
+	"golang_ninja/webAPIbook/pkg/process"
 	"log"
 	"time"
 )
 
-func (s S) Insert(m map[string]string, db *DB) (int, error) {
+func (s S) Insert(book process.Book, db *DB) (int, error) {
 	id := 0
 	str := "INSERT INTO books " +
 		"(author, title, publishing, dateinsert) " +
 		"values ($1, $2, $3, $4) returning id"
 	err1 := db.QueryRow(
 		str,
-		m["author"],
-		m["title"],
-		m["publishing"],
+		book.Title,
+		book.Author,
+		book.Publishing,
 		time.Now(),
 	).Scan(&id)
 

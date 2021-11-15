@@ -1,4 +1,4 @@
-package business
+package process
 
 import (
 	"encoding/json"

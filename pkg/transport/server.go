@@ -2,7 +2,7 @@ package transport
 
 import (
 	"golang_ninja/webAPIbook/config"
-	"golang_ninja/webAPIbook/pkg/business"
+	"golang_ninja/webAPIbook/pkg/process"
 	"golang_ninja/webAPIbook/pkg/storage"
 	"log"
 	"net/http"
@@ -11,7 +11,7 @@ import (
 type T struct {
 	db *storage.DB
 	Trnsprt
-	business.B
+	process.B
 }
 
 // Server function start server
@@ -22,7 +22,7 @@ func Server() error {
 		return err
 	}
 
-	serv := &T{db, Trnsprt{}, business.B{}}
+	serv := &T{db, Trnsprt{}, process.B{}}
 
 	http.HandleFunc("/books", serv.GetAll)
 	http.HandleFunc("/book", serv.Post)

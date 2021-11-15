@@ -1,7 +1,7 @@
 package transport
 
 import (
-	"golang_ninja/webAPIbook/pkg/business"
+	"golang_ninja/webAPIbook/pkg/process"
 	"golang_ninja/webAPIbook/pkg/storage"
 	"net/http"
 )
@@ -14,5 +14,5 @@ type Transport interface {
 type Trnsprt struct {
 	*storage.DB
 	Transport
-	business.Business
+	process.Business
 }
