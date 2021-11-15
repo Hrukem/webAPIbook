@@ -24,12 +24,11 @@ func Server() error {
 
 	serv := &T{db, Trnsprt{}, business.B{}}
 
-	mux := http.NewServeMux()
-	mux.HandleFunc("/books", serv.GetAll)
-	mux.HandleFunc("/book", serv.Post)
-	mux.HandleFunc("/book/", workDb)
+	http.HandleFunc("/books", serv.GetAll)
+	http.HandleFunc("/book", serv.Post)
+	http.HandleFunc("/book/", workDb)
 
-	err = http.ListenAndServe(config.Cfg.Port, mux)
+	err = http.ListenAndServe(config.Cfg.Port, nil)
 	if err != nil {
 		log.Println("error server", err)
 	}
