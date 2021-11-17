@@ -6,7 +6,7 @@ import (
 	"golang_ninja/webAPIbook/pkg/storage"
 )
 
-func (bs *B) GetAllFromDb(db *storage.DB) ([]byte, error) {
+func (bs *Proc) GetAllFromDb(db *storage.DB) ([]byte, error) {
 	sliceObjects, err := bs.SelectAll(db)
 	if err != nil {
 		return nil, err

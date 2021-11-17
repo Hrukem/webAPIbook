@@ -14,5 +14,5 @@ type Transport interface {
 type Trnsprt struct {
 	*storage.DB
 	Transport
-	process.Business
+	process.Process
 }

@@ -13,7 +13,7 @@ func main() {
 
 	err := config.Config()
 	if err != nil {
-		log.Fatal("error reade config", err)
+		log.Fatal("error read config: ", err)
 	}
 
 	time.Sleep(time.Second * 5)

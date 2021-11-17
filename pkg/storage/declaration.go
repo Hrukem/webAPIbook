@@ -21,12 +21,18 @@ type S struct {
 	Storage
 }
 
+type Book struct {
+	Title      string
+	Author     string
+	Publishing string
+}
+
 func NewDb() (*DB, error) {
-	str := "host=" + config.Cfg.DbHost +
-		" port=" + config.Cfg.DbPort +
-		" user=" + config.Cfg.DbUser +
-		" password=" + config.Cfg.DbPass +
-		" dbname=" + config.Cfg.DbName +
+	str := "host=" + config.Cfg.Dbhost +
+		" port=" + config.Cfg.Dbport +
+		" user=" + config.Cfg.Dbuser +
+		" password=" + config.Cfg.Dbpass +
+		" dbname=" + config.Cfg.Dbname +
 		" sslmode=disable"
 
 	db, err := sql.Open("postgres", str)

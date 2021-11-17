@@ -5,18 +5,12 @@ import (
 	"net/http"
 )
 
-type Book struct {
-	Title      string
-	Author     string
-	Publishing string
-}
-
-type Business interface {
+type Process interface {
 	InsertObjectInDb(*http.Request, *storage.DB) (map[string]int, error)
 	GetAllFromDb(*storage.DB) ([]byte, error)
 }
 
-type B struct {
-	Business
+type Proc struct {
+	Process
 	storage.S
 }

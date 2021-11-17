@@ -8,8 +8,8 @@ import (
 	"net/http"
 )
 
-func (bs *B) InsertObjectInDb(r *http.Request, db *storage.DB) ([]byte, error) {
-	var b Book
+func (bs *Proc) InsertObjectInDb(r *http.Request, db *storage.DB) ([]byte, error) {
+	var b storage.Book
 	err := json.NewDecoder(r.Body).Decode(&b)
 	if err != nil {
 		fmt.Println("error decode body in process.InsertObjectInDb()", err)

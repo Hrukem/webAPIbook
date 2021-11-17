@@ -1,6 +1,7 @@
 package transport
 
 import (
+	"fmt"
 	"golang_ninja/webAPIbook/config"
 	"golang_ninja/webAPIbook/pkg/process"
 	"golang_ninja/webAPIbook/pkg/storage"
@@ -11,7 +12,7 @@ import (
 type T struct {
 	db *storage.DB
 	Trnsprt
-	process.B
+	process.Proc
 }
 
 // Server function start server
@@ -22,12 +23,13 @@ func Server() error {
 		return err
 	}
 
-	serv := &T{db, Trnsprt{}, process.B{}}
+	serv := &T{db, Trnsprt{}, process.Proc{}}
 
 	http.HandleFunc("/books", serv.GetAll)
 	http.HandleFunc("/book", serv.Post)
 	http.HandleFunc("/book/", workDb)
 
+	fmt.Println("start server on port", config.Cfg.Port)
 	err = http.ListenAndServe(config.Cfg.Port, nil)
 	if err != nil {
 		log.Println("error server", err)

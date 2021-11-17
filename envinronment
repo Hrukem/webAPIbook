@@ -1,0 +1,6 @@
+export W_PORT=:4004
+export W_DBUSER=postgres
+export W_DBPASS=postgres
+export W_DBNAME=webapibooks
+export W_DBHOST=dbwebapibooks
+export W_DBPORT=5432
