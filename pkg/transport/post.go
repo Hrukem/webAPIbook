@@ -11,7 +11,7 @@ func (t *T) Post(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	answer, err := t.InsertObjectInDb(r, t.db)
+	answer, err := t.InsertObjectInDb(r, t.DbServer)
 	if err != nil {
 		log.Println("error insert data in database", err)
 		w.WriteHeader(http.StatusInternalServerError)

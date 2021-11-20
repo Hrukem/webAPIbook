@@ -3,10 +3,11 @@ package storage
 import (
 	"database/sql"
 	"log"
+	"strconv"
 	"time"
 )
 
-func (s S) Insert(b Book, db *DB) (int, error) {
+func (s *S) Insert(b Book, db *DB) (int, error) {
 	id := 0
 	str := "INSERT INTO books " +
 		"(author, title, publishing, dateinsert) " +
@@ -25,6 +26,10 @@ func (s S) Insert(b Book, db *DB) (int, error) {
 			return 0, err1
 		}
 	}
+
+	idString := strconv.Itoa(id)
+
+	db.Set(idString, b, 15)
 
 	return id, nil
 }

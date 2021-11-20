@@ -9,7 +9,7 @@ import (
 )
 
 type C struct {
-	Port   string `env:"PORT"`
+	Port   string
 	Dbuser string
 	Dbpass string
 	Dbname string

@@ -2,8 +2,10 @@ package storage
 
 import (
 	"database/sql"
+	"github.com/Hrukem/domz2_1"
 	_ "github.com/lib/pq"
 	"golang_ninja/webAPIbook/config"
+	"golang_ninja/webAPIbook/pkg/cache"
 	"log"
 )
 
@@ -14,8 +16,8 @@ type Storage interface {
 
 type DB struct {
 	*sql.DB
+	*domz2_1.Cache
 }
-
 type S struct {
 	DB
 	Storage
@@ -28,7 +30,10 @@ type Book struct {
 }
 
 func NewDb() (*DB, error) {
-	str := "host=" + config.Cfg.Dbhost +
+	ch := cache.Ch{}
+	cch := ch.NewCache()
+
+	str := "host=" + "localhost" + //config.Cfg.Dbhost +
 		" port=" + config.Cfg.Dbport +
 		" user=" + config.Cfg.Dbuser +
 		" password=" + config.Cfg.Dbpass +
@@ -45,5 +50,5 @@ func NewDb() (*DB, error) {
 		return nil, err
 	}
 
-	return &DB{db}, nil
+	return &DB{db, cch}, nil
 }

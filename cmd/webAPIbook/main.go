@@ -8,6 +8,16 @@ import (
 	"time"
 )
 
+// @title Swagger WebApiBook
+// version 1.0
+// description Service for storing data about books
+
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host localhost:4004
+// @BasePath /
+
 func main() {
 	fmt.Println("start application")
 
