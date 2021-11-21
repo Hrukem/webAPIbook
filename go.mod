@@ -5,6 +5,7 @@ go 1.17
 require (
 	github.com/Hrukem/domz2_1 v0.0.0-20211030164831-2d4d0e41d42b
 	github.com/caarlos0/env/v6 v6.7.2
+	github.com/joho/godotenv v1.4.0
 	github.com/lib/pq v1.10.3
 	github.com/swaggo/http-swagger v1.1.2
 	github.com/swaggo/swag v1.7.4

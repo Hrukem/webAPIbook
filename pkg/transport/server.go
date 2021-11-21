@@ -25,21 +25,11 @@ func Server() error {
 		return err
 	}
 
-	serv := &T{DbServer, Trnsprt{}, process.Proc{}}
+	t := &T{DbServer, Trnsprt{}, process.Proc{}}
 
-	http.HandleFunc("/books", serv.GetAll)
-	http.HandleFunc("/book", serv.Post)
-	http.HandleFunc("/book/", workDb)
-
-	/*	r := chi.NewRouter()
-		r.Get("/books", serv.GetAll)
-		r.Post("/book", serv.Post)
-		r.HandleFunc("/book/", workDb)
-
-		r.Get("/swagger/*", httpSwagger.Handler(
-			httpSwagger.URL("http://localhost:4004/swagger/*any"), //The url pointing to API definition
-		))
-	*/
+	http.HandleFunc("/books", t.GetAll)
+	http.HandleFunc("/book", t.Post)
+	http.HandleFunc("/book/", t.MethodSwitch)
 
 	http.HandleFunc(
 		"/swagger/",
@@ -56,18 +46,4 @@ func Server() error {
 		log.Println("error server", err)
 	}
 	return nil
-}
-
-func workDb(w http.ResponseWriter, r *http.Request) {
-
-	switch r.Method {
-	case "GET":
-		//		old.Get(w, r)
-	case "PUT":
-		//		old.Put(w, r)
-	case "DELETE":
-		//		old.Delete(w, r)
-	default:
-		w.WriteHeader(http.StatusNotImplemented)
-	}
 }

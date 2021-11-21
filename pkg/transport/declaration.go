@@ -9,6 +9,8 @@ import (
 type Transport interface {
 	Post(w http.ResponseWriter, r *http.Request)
 	GetAll(w http.ResponseWriter, r *http.Request)
+	GetID(w http.ResponseWriter, r *http.Request)
+	MethodSwitch(w http.ResponseWriter, r *http.Request)
 }
 
 type Trnsprt struct {

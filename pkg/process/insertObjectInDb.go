@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-func (bs *Proc) InsertObjectInDb(r *http.Request, db *storage.DB) ([]byte, error) {
+func (p *Proc) InsertObjectInDb(r *http.Request, db *storage.DB) ([]byte, error) {
 	var b storage.Book
 	err := json.NewDecoder(r.Body).Decode(&b)
 	if err != nil {
@@ -16,7 +16,7 @@ func (bs *Proc) InsertObjectInDb(r *http.Request, db *storage.DB) ([]byte, error
 		return nil, err
 	}
 
-	id, err := bs.Insert(b, db)
+	id, err := p.Insert(b, db)
 
 	m := map[string]int{"id": id}
 

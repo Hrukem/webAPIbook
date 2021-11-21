@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"github.com/caarlos0/env/v6"
 	"github.com/gosidekick/goconfig"
+	"github.com/joho/godotenv"
 	"github.com/kelseyhightower/envconfig"
 	"log"
+	"os"
 )
 
 type C struct {
@@ -32,6 +34,7 @@ func Config() error {
 	}
 	err = goconfig.Parse(&goconf)
 	fmt.Println(err)
+	fmt.Println(goconf)
 	fmt.Println("Port", goconf.Port)
 	fmt.Println("DbName ", goconf.Dbname)
 	_, err = fmt.Printf("Port %s \n", Cfg.Port)
@@ -44,6 +47,13 @@ func Config() error {
 	err = env.Parse(&envcon)
 	fmt.Println(err)
 	fmt.Println("envcon :", envcon)
+
+	err = godotenv.Load()
+	if err != nil {
+		log.Println("error config.Config()")
+		return err
+	}
+	fmt.Println("port__ : ", os.Getenv("PORT"))
 
 	Cfg.Port = ":4004"
 	Cfg.Dbuser = "postgres"
