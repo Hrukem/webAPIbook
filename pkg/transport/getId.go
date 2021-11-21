@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+// GetID function return object by id
 func (t *T) GetID(w http.ResponseWriter, r *http.Request) {
 	path := r.URL.Path
 
