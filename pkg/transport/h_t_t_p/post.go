@@ -1,4 +1,4 @@
-package transport
+package h_t_t_p
 
 import (
 	"log"
@@ -11,11 +11,11 @@ func (t *T) Post(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	answer, err := t.InsertObjectInDb(r, t.DbServer)
+	answer, err := t.InsertObjectInDb(r, t.DbPostgres, t.LoggingInMongo)
 	if err != nil {
 		log.Println("error insert data in database", err)
 		w.WriteHeader(http.StatusInternalServerError)
-		if _, err = w.Write([]byte("error insert object in database on server")); err != nil {
+		if _, err = w.Write([]byte("error insert object in database on grpcServer")); err != nil {
 			log.Println("error write body answer in transport.bookCreate()", err)
 		}
 		return

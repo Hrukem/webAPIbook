@@ -4,7 +4,7 @@ services:
     image: postgres:latest
     restart: always
     volumes:
-      - ./pkg/storage/init_s:/docker-entrypoint-initdb.d
+      - ./pkg/storage/postgress/init_s:/docker-entrypoint-initdb.d
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres

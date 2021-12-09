@@ -1,6 +1,8 @@
-package transport
+package h_t_t_p
 
-import "net/http"
+import (
+	"net/http"
+)
 
 func (t *T) MethodSwitch(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {

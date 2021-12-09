@@ -1,6 +1,8 @@
-package storage
+package postgress
 
-import "log"
+import (
+	"log"
+)
 
 func (s *S) SelectAll(db *DB) ([]books, error) {
 	str := "SELECT id, title, author," + " publishing FROM books"
