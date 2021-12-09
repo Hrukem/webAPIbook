@@ -30,7 +30,7 @@ RUN cp  -r /app/bin .
 FROM scratch
 
 COPY --from=builder /dist/bin .
-#COPY --from=builder /app/.env .
+#COPY --from=builder /app/.ENV .
 
 # Command to run
 ENTRYPOINT ["./webAPIbook"]

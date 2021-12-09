@@ -1,26 +1,24 @@
 package storage
 
-import (
-	"log"
-)
+import "log"
 
-func (db *DB) GetAll() ([]books, error) {
+func (s *S) SelectAll(db *DB) ([]books, error) {
 	str := "SELECT id, title, author," + " publishing FROM books"
 	rows, err := db.Query(str)
 	if err != nil {
-		log.Println("error get data from db in transport.GetAll()")
+		log.Println("error get data from db in storage.SelectAll()")
 		return nil, err
 	}
 
-	bookList := make([]books, 0)
+	objectList := make([]books, 0)
 	for rows.Next() {
 		b := books{}
 		err = rows.Scan(&b.Id, &b.Title, &b.Author, &b.Publishing)
 		if err != nil {
-			log.Println("error Scan rows in transport.GetAll()")
+			log.Println("error Scan rows in storage.SelectAll()")
 			return nil, err
 		}
-		bookList = append(bookList, b)
+		objectList = append(objectList, b)
 	}
-	return bookList, nil
+	return objectList, nil
 }

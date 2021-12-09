@@ -3,19 +3,20 @@ package storage
 import (
 	"database/sql"
 	"log"
+	"strconv"
 	"time"
 )
 
-func (db *DB) PostBook(m map[string]string) (int, error) {
+func (s *S) Insert(b Book, db *DB) (int, error) {
 	id := 0
 	str := "INSERT INTO books " +
 		"(author, title, publishing, dateinsert) " +
 		"values ($1, $2, $3, $4) returning id"
 	err1 := db.QueryRow(
 		str,
-		m["author"],
-		m["title"],
-		m["publishing"],
+		b.Title,
+		b.Author,
+		b.Publishing,
 		time.Now(),
 	).Scan(&id)
 
@@ -25,6 +26,10 @@ func (db *DB) PostBook(m map[string]string) (int, error) {
 			return 0, err1
 		}
 	}
+
+	idString := strconv.Itoa(id)
+
+	db.Set(idString, b, 15)
 
 	return id, nil
 }

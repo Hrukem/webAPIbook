@@ -1,32 +1,35 @@
 package transport
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 )
 
-func (env *Store) bookAll(w http.ResponseWriter, r *http.Request) {
+// @Summary GetAll
+// @Description return list books
+// @Accept json
+// @Produce json
+// @Success 200 {json}
+// @Failure 400, 404 {json}
+// @Router /books [get]
+
+func (t *T) GetAll(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
 		return
 	}
 
-	b, err := env.db.GetAll()
+	answer, err := t.GetAllFromDb(t.DbServer)
 	if err != nil {
 		log.Println("error get data from database", err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
-	answer, err := json.Marshal(b)
-	if err != nil {
-		fmt.Println("error Marshal in transport.bookList()", err)
-	}
 
 	w.WriteHeader(http.StatusOK)
 	_, err = w.Write(answer)
 	if err != nil {
-		fmt.Println("error Write in transport.bookList()", err)
+		fmt.Println("error Write in interfaces.GetAll()", err)
 	}
 }
