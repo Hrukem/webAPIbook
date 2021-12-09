@@ -1,4 +1,4 @@
-package transport
+package h_t_t_p
 
 import (
 	"fmt"
@@ -20,7 +20,7 @@ func (t *T) GetAll(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	answer, err := t.GetAllFromDb(t.DbServer)
+	answer, err := t.GetAllFromDb(t.DbPostgres, t.LoggingInMongo)
 	if err != nil {
 		log.Println("error get data from database", err)
 		w.WriteHeader(http.StatusInternalServerError)

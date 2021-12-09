@@ -1,9 +1,9 @@
-package storage
+package postgress
 
 import (
 	"database/sql"
-	"golang_ninja/webAPIbook/config"
-	"golang_ninja/webAPIbook/pkg/cache"
+	"golang_ninja/webAPIbook/pkg/config"
+	"golang_ninja/webAPIbook/pkg/storage/cache"
 	"log"
 )
 

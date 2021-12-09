@@ -1,4 +1,4 @@
-package transport
+package h_t_t_p
 
 import (
 	"fmt"
@@ -10,7 +10,7 @@ import (
 func (t *T) GetID(w http.ResponseWriter, r *http.Request) {
 	path := r.URL.Path
 
-	answer, err := t.GetObjectFromDb(t.DbServer, path)
+	answer, err := t.GetObjectFromDb(t.DbPostgres, path, t.LoggingInMongo)
 	if err != nil {
 		log.Println("error get data from database", err)
 		w.WriteHeader(http.StatusInternalServerError)

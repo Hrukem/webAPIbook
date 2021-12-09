@@ -1,6 +1,8 @@
-package storage
+package postgress
 
-import "log"
+import (
+	"log"
+)
 
 func (s *S) SelectObject(db *DB, id int) (Book, error) {
 	str := "SELECT title, author," + " publishing FROM books" + " where id = $1"
