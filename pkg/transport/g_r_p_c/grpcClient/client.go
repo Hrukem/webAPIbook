@@ -2,7 +2,6 @@ package grpcClient
 
 import (
 	"context"
-	"fmt"
 	"golang_ninja/webAPIbook/pkg/transport/g_r_p_c/grpcServer"
 	"google.golang.org/grpc"
 	"log"
@@ -19,7 +18,6 @@ func RunGRPCclient(loggingInMongo <-chan grpcServer.L) {
 
 	for {
 		l := <-loggingInMongo
-		fmt.Println("l: ", l)
 
 		answerGrpcServer, err :=
 			client.Receive(

@@ -7,7 +7,7 @@ import (
 	"log"
 )
 
-func NewDb() (*DB, error) {
+func ConnDbPostgres() (*DB, error) {
 	ch := cache.Ch{}
 	cch := ch.NewCache()
 
@@ -24,9 +24,11 @@ func NewDb() (*DB, error) {
 		return nil, err
 	}
 	if err = db.Ping(); err != nil {
-		log.Println("error Ping to database")
+		log.Println("error Ping to database in ConnDbPostgres()")
 		return nil, err
 	}
+
+	log.Println("Ping to PostgresDB ok!")
 
 	return &DB{db, cch}, nil
 }

@@ -6,6 +6,8 @@ import (
 	"net/http"
 )
 
+//go:generate mockgen -source=declaration.go -destination=mocks/mock.go
+
 type Transport interface {
 	Post(w http.ResponseWriter, r *http.Request)
 	GetAll(w http.ResponseWriter, r *http.Request)

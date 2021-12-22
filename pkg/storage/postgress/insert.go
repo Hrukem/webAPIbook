@@ -10,7 +10,7 @@ import (
 func (s *S) Insert(b Book, db *DB) (int, error) {
 	id := 0
 	str := "INSERT INTO books " +
-		"(author, title, publishing, dateinsert) " +
+		"(title, author, publishing, dateinsert) " +
 		"values ($1, $2, $3, $4) returning id"
 	err1 := db.QueryRow(
 		str,

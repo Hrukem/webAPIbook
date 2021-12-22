@@ -32,7 +32,7 @@ func isAuthenticated(r *http.Request) bool {
 	claims := &jwt.StandardClaims{}
 	token, err := jwt.ParseWithClaims(sliceStrings[1], claims, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
+			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
 		}
 		return []byte(config.Cfg.SecretJWT), nil
 	})

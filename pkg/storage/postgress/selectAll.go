@@ -5,7 +5,7 @@ import (
 )
 
 func (s *S) SelectAll(db *DB) ([]books, error) {
-	str := "SELECT id, title, author," + " publishing FROM books"
+	str := "SELECT id, title, author, publishing FROM books"
 	rows, err := db.Query(str)
 	if err != nil {
 		log.Println("error get data from db in storage.SelectAll()")
