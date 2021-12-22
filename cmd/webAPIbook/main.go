@@ -30,7 +30,7 @@ func main() {
 		log.Fatal("error read config: ", err)
 	}
 
-	dbPostgres, err := postgress.NewDb()
+	dbPostgres, err := postgress.ConnDbPostgres()
 	if err != nil {
 		log.Fatal("error create PostgresDb")
 	}

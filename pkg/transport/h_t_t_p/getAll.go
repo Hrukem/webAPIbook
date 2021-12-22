@@ -14,7 +14,7 @@ import (
 // @Failure 400, 404 {json}
 // @Router /books [get]
 
-func (t *T) GetAll(w http.ResponseWriter, r *http.Request) {
+func (t *Tr) GetAll(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
 		return

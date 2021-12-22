@@ -7,7 +7,7 @@ import (
 )
 
 // GetID function return object by id
-func (t *T) GetID(w http.ResponseWriter, r *http.Request) {
+func (t *Tr) GetID(w http.ResponseWriter, r *http.Request) {
 	path := r.URL.Path
 
 	answer, err := t.GetObjectFromDb(t.DbPostgres, path, t.LoggingInMongo)
